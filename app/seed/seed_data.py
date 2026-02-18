@@ -22,7 +22,7 @@ def seed():
 
     # Customers
     customers = []
-    for i in range(50):
+    for i in range(300):
         email = f"user{i}@mail.com"
         if i % 10 == 0:
             email = "duplicate@mail.com"
@@ -39,7 +39,7 @@ def seed():
 
     # Products
     products = []
-    for i in range(30):
+    for i in range(50):
         product = Product(
             name=f"Product {i}",
             price=random.randint(10, 500),
@@ -52,7 +52,7 @@ def seed():
 
     # Orders
     orders = []
-    for i in range(80):
+    for i in range(2000):
         total = random.randint(100, 1000)
         if i % 7 == 0:
             total += 50  # erro proposital
@@ -75,7 +75,7 @@ def seed():
             item = OrderItem(
                 order_id=order.id,
                 product_id=product.id,
-                quantity=random.randint(1, 5),
+                quantity=random.randint(1, 10),
                 price=product.price,
             )
             db.add(item)
@@ -83,11 +83,11 @@ def seed():
     db.commit()
 
     # Payments
-    for order in orders[:60]:
+    for order in orders[:1850]:
         payment = Payment(
             order_id=order.id,
             amount=order.total,
-            status=random.choice(["paid", "failed"]),
+            status=random.choice(["paid", "failed", "pending"]),
         )
         db.add(payment)
 

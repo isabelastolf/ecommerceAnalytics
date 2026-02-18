@@ -1,1 +1,4 @@
-class Customer(Base):
+from app.core.database import Base
+
+
+class Customer(Base): ...
